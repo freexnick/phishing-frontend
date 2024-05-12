@@ -1,9 +1,9 @@
-import AuthComponent from "./components/AuthComponent";
+import PhishingComponent from "../components/PhishingComponent";
 
-export default function Home() {
+export default function SignUp() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-between align-center md:p-24 p-1 min-w-fit">
-            <AuthComponent />
+            <PhishingComponent />
         </main>
     );
 }
