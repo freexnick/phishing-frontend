@@ -1,6 +1,6 @@
 export type Email = {
-    uid: string;
-    employee: string;
+    uuid: string;
+    email: string;
     content: string;
     phishingStatus: boolean;
 };

@@ -13,7 +13,7 @@ export default function SignUpComponent() {
         const data = JSON.stringify(Object.fromEntries(formData));
 
         try {
-            const response = await fetch(`${API_URI}/user/register`, {
+            const response = await fetch(`${API_URI}/auth/sign-up`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

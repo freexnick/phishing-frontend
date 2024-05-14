@@ -8,17 +8,21 @@ export default function UserComponent() {
     const [mailData, setMailData] = useState<Email[] | []>([]);
 
     async function getMails() {
-        const response = await fetch(`${API_URI}/mails`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            credentials: "include",
-        });
+        try {
+            const response = await fetch(`${API_URI}/email`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            });
 
-        const data = await response.json();
+            const data = await response.json();
 
-        setMailData(data);
+            setMailData(data);
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -28,7 +32,7 @@ export default function UserComponent() {
         const data = JSON.stringify(Object.fromEntries(formData));
 
         try {
-            await fetch(`${API_URI}/send-mail`, {
+            await fetch(`${API_URI}/email`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -80,13 +84,13 @@ export default function UserComponent() {
             {mailData?.length ? (
                 mailData?.map((mail) => {
                     return (
-                        <div key={mail.uid}>
+                        <div key={mail.uuid}>
                             <EmailComponent {...mail} />
                         </div>
                     );
                 })
             ) : (
-                <div>Loading...</div>
+                <div className="animate-pulse">Loading...</div>
             )}
         </div>
     );

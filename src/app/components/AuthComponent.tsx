@@ -14,7 +14,7 @@ export default function AuthComponent() {
         const data = JSON.stringify(Object.fromEntries(formData));
 
         try {
-            await fetch(`${API_URI}/user/sign-in`, {
+            await fetch(`${API_URI}/auth/sign-in`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
